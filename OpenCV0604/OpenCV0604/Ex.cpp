@@ -12,34 +12,35 @@ void print_matInfo2(String name, Mat m);
 
 int main() {
 
-	///* Point : 2차원 *///
-	//Point_<int> pt1(100, 200);
-	//Point_<float> pt2(92.3f, 125.23f);
-	//Point_<double> pt3(100.2, 300.9);
+	/// 2차원 좌표 - Point 객체
+	/*
+		typedef Point_<int> Point2i
+			- typedef Point2i Point
+		typedef Point_<float> Point2f
+		typedef Point_<double> Point2d
+	*/
+	Point_<int> pt1(100, 200);
+	Point_<float> pt2(92.3f, 125.23f);
+	Point_<double> pt3(100.2, 300.9);
 
-	//// typedef Point_<int> Point2i
-	//// typedef Point_<float> Point2f
-	//// typedef Point_<double> Point2d
-	//Point2i pt4(120, 69);									
-	//Point2f pt5(0.3f, 0.f), pt6(0.f, 0.4f);
-	//Point2d pt7(0.25, 0.6);
+	Point2i pt4(120, 69);									
+	Point2f pt5(0.3f, 0.f), pt6(0.f, 0.4f);
+	Point2d pt7(0.25, 0.6);
 
-	//// typedef Point_<int> Point2i;	
-	//// 가장 많이 사용하는 Point2i를 typedef
-	//Point pt8 = pt1 + (Point)pt2;				
+	Point pt8 = pt1 + (Point)pt2;				
 
-	//// 스칼라곱: x, y 모두에 곱해진다.
-	//Point2f pt9 = pt6 * 3.14f;
-	//Point2d pt10 = (pt3 + (Point2d)pt6) * 10;
+	// 스칼라곱: x, y 모두에 곱해진다.
+	Point2f pt9 = pt6 * 3.14f;
+	Point2d pt10 = (pt3 + (Point2d)pt6) * 10;
 
-	//cout << "pt8 = " << pt8.x << ", " << pt8.y << endl;		// 192, 325
-	//cout << "[pt9] = " << pt9 << endl;						// [0, 1.256]
-	//cout << (pt2 == pt6) << endl;								// 0
-	//
-	//// 내적 
-	//// 2차원좌표이므로 2차원벡터로 보고 내적계산.
-	//// x1*x2 + y1*y2
-	//cout << "pt7과 pt8의 내적: " << pt8.dot(pt7) << endl;		// 243
+	cout << "pt8 = " << pt8.x << ", " << pt8.y << endl;		// 192, 325
+	cout << "[pt9] = " << pt9 << endl;						// [0, 1.256]
+	cout << (pt2 == pt6) << endl;								// 0
+	
+	// 내적 
+	// 2차원좌표이므로 2차원벡터로 보고 내적계산.
+	// x1*x2 + y1*y2
+	cout << "pt7과 pt8의 내적: " << pt8.dot(pt7) << endl;		// 243
 
 
 
@@ -178,17 +179,17 @@ int main() {
 	//Matx34d m5(1, 2, 3, 10, 11, 12, 13, 14, 15);
 	//Matx66f m6(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
-	//cout << "m5(0,0) = " << m5(0, 0) << endl;			// 1
-	//cout << "m5(1,0) = " << m5(1, 0) << endl;			// 11
-	//cout << "m6(0, 1) = " << m6(0, 1) << endl;			// 2
-	//cout << "m6(1,3) = " << m6(1,3) << endl;			// 0
+	//cout << "m5(0, 0) = " << m5(0, 0) << endl;			// 1
+	//cout << "m5(1, 0) = " << m5(1, 0) << endl;			// 11
+	//cout << "m6(0, 1) = " << m6(0, 1) << endl;		// 2
+	//cout << "m6(1, 3) = " << m6(1,3) << endl;			// 0
 
-	//cout << "[m1] =" << endl << m1 << endl;				
-	//cout << "[m2] =" << endl << m2 << endl;
-	//cout << "[m3] =" << endl << m3 << endl;
-	//cout << "[m4] =" << endl << m4 << endl;
-	//cout << "[m5] =" << endl << m5 << endl;
-	//cout << "[m6] =" << endl << m6 << endl;
+	//cout << "[m1] = " << endl << m1 << endl;				
+	//cout << "[m2] = " << endl << m2 << endl;
+	//cout << "[m3] = " << endl << m3 << endl;
+	//cout << "[m4] = " << endl << m4 << endl;
+	//cout << "[m5] = " << endl << m5 << endl;
+	//cout << "[m6] = " << endl << m6 << endl;
 
 
 
