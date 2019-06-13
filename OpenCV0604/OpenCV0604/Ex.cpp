@@ -97,51 +97,65 @@ int main() {
 			<메서드>		tl(), br(), size()
 				- 생성자1. Rect rect(left, top, width, height)
 				- 생성자2. Rect rect(Point(left, top), Point2f(right, bottom)
-				- 생성자3. Rect rect(Point(left, top), Size(width, height))			
-	
+				- 생성자3. Rect rect(Point(left, top), Size(width, height))
+				- & 연산: 두 Rect 영역의 겹쳐진 부분의 영역(Rect)을 리턴
+				- | 연산: 두 Rect 영역을 포함하는 전체영역(Rect)을 리턴(이때, 합쳐진 모양 자체가 아닌, 이 합영역을 포함하는 Rect영역으로 리턴)
+				- tl(): Point(top, left)
+				- br(): Point(bottom, right)
+
 	 */
-	Size2d			sz(100.5, 60.0);
-	Point2f			pt1(20.f, 30.f), pt2(100.f, 200.f);
+	//Size2d			sz(100.5, 60.0);
+	//Point2f			pt1(20.f, 30.f), pt2(100.f, 200.f);
 
 
-	Rect_<int>		rect1(10, 10, 30, 50);
-	Rect_<float>	rect2(pt1, pt2);
-	Rect_<double>	rect3(Point2d(20.5, 10), sz);
+	//Rect_<int>		rect1(10, 10, 30, 50);
+	//Rect_<float>	rect2(pt1, pt2);
+	//Rect_<double>	rect3(Point2d(20.5, 10), sz);
 
-	// Rect와 Point간의 연산
-	Rect			rect4 = rect1 + (Point)pt1;		// rect4는, rect1을 pt1좌표값만큼 "이동"시킨 영역!
-	Rect2f			rect5 = rect2 + (Size2f)sz;
+	///* Rect와 Point, Size간의 연산
+	//   Rect => 시작위치(Point of leftTop)정보 + 크기정보(Size of Width, Height)
+	//   Rect와 Point간의 연산 => Rect의 Point와 Point간의 연산 => Rect의 시작위치 변경
+	//   Rect와 Size간의 연산 =>  Rect의 Size와 Size간의 연산 => Rect의 크기정보 변경 
+	//*/
+	//Rect			rect4 = rect1 + (Point)pt1;		
+	//Rect2f			rect5 = rect2 + (Size2f)sz;
 
-   // &연산: 두 rect영역의 겹쳐진 부분의 영역(rect)을 리턴
-   // |연산: 두 rect영역을 포함하는 전체영역(rect)을 리턴 -> 이때, 합쳐진 전체모양 자체가 아닌, 두 영역을 포함하는 Rect영역으로 리턴
-	Rect2d rect6 = rect1 & (Rect)rect2;
+	//// &연산
+	//Rect2d rect6 = rect1 & (Rect)rect2;
 
-	cout << "rect3 = " << rect3.x << ", " << rect3.y << " => " << rect3.width << "x" << rect3.height << endl;	// 20.5, 10, 100.5x60
-   // tl() : topleft
-   // br() : bottomright
-	cout << "rect4 = " << rect4.tl() << " " << rect4.br() << endl;	// [30, 40] [60, 90]
-	cout << "rect5 크기 = " << rect5.size() << endl;					// [180.5 x 230]
-	cout << "[rect6] = " << rect6 << endl;							// [20 x 30 from (20, 30]
+	//cout << "rect3 = " << rect3.x << ", " << rect3.y << " => " << rect3.width << "x" << rect3.height << endl;	// 20.5, 10, 100.5x60
+
+	//cout << "rect4 = " << rect4.tl() << " " << rect4.br() << endl;	// [30, 40] [60, 90]
+	//cout << "rect5 크기 = " << rect5.size() << endl;					// [180.5 x 230]
+	//cout << "[rect6] = " << rect6 << endl;							// [20 x 30 from (20, 30]
 
 
 
-	
-	///* Vec *///
-	// 초기화 없는 값은 0으로 할당해줌.
-	// typedef Vec<int, 2> Vec2i				... n = 2, 3, 4, 6, 8
-	//Vec<int, 2> v1(5, 12);
-	//Vec<double, 3> v2(40, 130.7, 125.6);
 
-	//// typedef Vec<uchar, 2> Vec2b;		// b(byte <- unsigned char)
+	///* 벡터(방향있는 좌표) - Vec
+	/*	3차원 => x, y, z
+		typedef Vec<int, 2>		Vec2i		// 2차원 int형 벡터(즉 방향있는 2차원좌표)
+		typedef Vec<double, 3>	Vec3d		// 3차원 double형 벡터
+
+		typedef Vec<uchar, 2>	Vec2b		// 2차원 unsigned char형(Byte) 벡터
+			- unsigned char(8bits) => 0 ~ 255.
+			- 오버플로우(0이하, 255이상)가 발생하면, saturation arithmetic이 자동으로 수행된다.
+				* saturation arithmetic : 범위값을 넘어가면 가까운 한계값으로 재설정하는 것
+		typedef Vec<short, 3>	Vec3s		// 3차원 short형 벡터
+		typedef Vec<ushort, 4>	Vec4w		// 2차원 unsigned short형(Word) 벡터
+
+		- 초기화하지않은 값은 0으로 할당해준다.
+		- 다차원 벡터의 각 요소는 []로 접근한다.
+	 */
+	//Vec<int, 2>		v1(5, 12);
+	//Vec<double, 3>	v2(40, 130.7, 125.6);
+
 	//Vec2b v3(10, 20);
+	//Vec6f v4(40.f, 230.25f, 525.6f);	
 
-	//// typedef Vec<float, 6> Vec6f;
-	//Vec6f v4(40.f, 230.25f, 525.6f);	// float 6차원짜리 벡터. 초기화없는 값은 0으로 할당
-
-	//// typedef Vec<int, 3> Vec3i;
 	//Vec3i v5(200, 230, 250);
 
-	//Vec3d v6 = v2 + (Vec3d)v5;		
+	//Vec3d v6 = v2 + (Vec3d)v5;
 	//Vec2b v7 = (Vec2b)v1 + v3;
 	//Vec6f v8 = v4 * 20.0f;
 
@@ -150,7 +164,7 @@ int main() {
 
 	//cout << "[v3] = " << v3 << endl;			// [10, 20]
 	//cout << "[v7] = " << v7 << endl;			// [15, 32]
-	//cout << "[v3 * v7] = " << v3.mul(v7) << endl;	// [150, 255]		// 8bit에서 오버플로우(0이하 255이상)되면 saturation arithmatic(넘어가면 0, 255로 세팅하는 것)을 수행한다
+	//cout << "[v3 * v7] = " << v3.mul(v7) << endl;	// [150, 255]		
 	//cout << "v8[0] = " << v8[0] << endl;			// 800
 	//cout << "v8[1] = " << v8[1] << endl;			// 4605
 	//cout << "v8[2] = " << v8[2] << endl;			// 10512
@@ -161,42 +175,54 @@ int main() {
 
 
 
-	///* Scalar */// 
-	// Scalar_<_Tp> : Vect<_Tp, 4>를 따로 정의한 클래스(가장 많이 사용하기 때문)
-	// Blue, Green, Red, Alpha 값을 저장하기 위한 용도 (*alpha는 투명도를 설정하는 값)
-	// typedef Scalar_<double> Scalar;
-	// 값을 모두 지정하지 않으면 0으로 초기화
-	//Scalar_<uchar> red(0, 0, 255);		// 0 0 255 0
-	//Scalar_<int> blue(255, 0, 0);		// 255 0 0 0
-	//Scalar_<double> color1(500);		// 500 0 0 0
-	//Scalar_<float> color2(100.f, 200.f, 125.9f);	// 100 200 125.9 0
+	///* Scalar 
+	/*  typedef Scalar_<double> Scalar
 
-	//Vec3d green(0, 0, 300.5);		 // 0 0 300.5 0
-	//Scalar green1 = color1 + (Scalar)green;		// 500 0 300.5 0
-	//Scalar green2 = color2 + (Scalar_<float>)green;		// 100 200 426.4 0
+		class Scalar_<_Tp> : public Vec<_Tp, 4>
+		- Scalar는 4차원 Vec에서 파생된, 따로 정의한 클래스(가장 많이 사용하기 때문)
+		- 주로, Blue/Green/Red/Alpha 4개의 색을 저장하기 위해 사용된다(alpha: 투명도를 설정하는 값)
+		- 초기화하지 않으면 0으로 할당한다.
+	 */
+	//Scalar_<uchar>	red(0, 0, 255);					// 0 0 255 0
+	//Scalar_<int>	blue(255, 0, 0);				// 255 0 0 0
+	//Scalar_<double> color1(500);					// 500 0 0 0
+	//Scalar_<float>	color2(100.f, 200.f, 125.9f);	// 100.0 200.0 125.9 0.0
+
+	//Vec3d			green(0, 0, 300.5);											// 0 0 300.5
+	//Scalar			green1				= color1 + (Scalar)green;				// 500 0 300.5 0
+	//Scalar			green2				= color2 + (Scalar_<float>)green;		// 100 200 426.4 0
 
 	//cout << "blue = " << blue[0] << ", " << blue[1] << ", " << blue[2] << endl;		// 255, 0, 0
-	//cout << "red = " << red << endl;					// 0 0 255 0
-	//cout << "green = " << green << endl << endl;		// 0 0 300.5
+	//cout << "red = " << red << endl;						// 0 0 255 0
+	//cout << "green = " << green << endl << endl;			// 0 0 300.5
 	//cout << "(Scalar)green = " << (Scalar)green << endl;	// 0 0 300.5 0
 	//cout << "green1 = " << green1 << endl;					// 500 0 300.5 0
 	//cout << "green2 = " << green2 << endl;					// 100 200 426.4 0
 
 
-	/////* 행렬 Matx													
-	//// 단위행렬, 역행렬, 전치행렬
-	//// 
-	//Matx<int, 3, 3> m1(1, 2, 3, 4, 5, 6, 7, 8, 9);
-	//Matx<float, 2, 3> m2(1, 2, 3, 4, 5, 6);
-	//Matx<double, 3, 5 > m3(3, 4, 5, 7);
+	///* 행렬 Matx													
+	/*	typedef Matx<double, 2, 3> Matx23d			// double형 2x3 행렬
+		- 단위행렬, 역행렬, 전치행렬 
+		- 초기화하지않으면 0으로 할당한다.
+	 */ 
+	//Matx<int, 3, 3>		m1(1, 2, 3,
+	//					   4, 5, 6,
+	//					   7, 8, 9);
+	//Matx<float, 2, 3>	m2(1, 2, 3, 
+	//					   4, 5, 6);
+	//Matx<double, 3, 5>	m3(3, 4, 5, 7);
 
-	//Matx23d m4(3, 4, 5, 6, 7, 8);
-	//Matx34d m5(1, 2, 3, 10, 11, 12, 13, 14, 15);
-	//Matx66f m6(1, 2, 3, 4, 5, 6, 7, 8, 9);
+	//Matx23d				m4(3, 4, 5, 
+	//					   6, 7, 8);
+	//Matx34d				m5( 1,  2,  3, 10, 
+	//					   11, 12, 13, 14, 
+	//					   15);
+	//Matx66f				m6(1, 2, 3, 4, 5, 6, 
+	//					   7, 8, 9);
 
 	//cout << "m5(0, 0) = " << m5(0, 0) << endl;			// 1
 	//cout << "m5(1, 0) = " << m5(1, 0) << endl;			// 11
-	//cout << "m6(0, 1) = " << m6(0, 1) << endl;		// 2
+	//cout << "m6(0, 1) = " << m6(0, 1) << endl;			// 2
 	//cout << "m6(1, 3) = " << m6(1,3) << endl;			// 0
 
 	//cout << "[m1] = " << endl << m1 << endl;				
@@ -208,40 +234,45 @@ int main() {
 
 
 
-	///* 대형행렬 Mat *///
-	// 초기화하지않은 값은 쓰레기값이 들어온다. (자동 0할당 X)
-	// 생성자1: Mat(int row, int cols, int type) => type의 CV_XX부분을 depth라고 한다.
-	/* type
-	* CV_8U		uchar	0
-	*
-	*/
-	// 생성자2: Mat(int row, int cols, int ytpe, const Scalar& s) => s:행렬의 초기값
-	//float data[] = { 1.2f, 2.3f, 3.2f, 4.5f, 5.f, 6.5f };
-	//Mat m1(2, 3, CV_8U);
-	//const int sizes[][2] = { {2, 3}, {2, 3}, {2, 3} };
-	///*Mat(3, sizes, CV_8U, Scalar(300, 50, 40));*/
-	//Mat m2(2, 3, CV_8U, Scalar(300));		// 300으로 초기화하려고 보니, CV_8U라 overflow돼서 maximum값인 255로 초기화됨.
-	//Mat m3(2, 3, CV_16S, Scalar(300));		// Scalar(300) => Scalar(300, 0, 0, 0)인데 m3가 2x3, 즉 1채널이기 때문에 맨 앞의 300으로만 채워짐
-	//Mat m4(2, 3, CV_32F, data);
+	///* 대형행렬 Mat 
+	/* 
+		<메서드> 
+			- 생성자1: Mat(int row, int cols, int type)							// type	: 행렬 각 요소의 타입(depth)
+			- 생성자2: Mat(int row, int cols, int type, const Scalar& s)			// s	: 초기값
+				
+		- 초기화하지 않으면 쓰레기값을 할당한다(0 아님)
 
-	//Size sz(2, 3);
-	//Mat m5(Size(2, 3), CV_64F);
-	//Mat m6(sz, CV_32F, data);
+		[행렬 Matx 타입과 비교]
+		- 행렬		Matx23d m;	(또는 Matx<double, 2, 3> m;)
+		- 대형행렬	Mat m(2, 3, CV_
+	 */
+	 
+	float data[] = { 1.2f, 2.3f, 3.2f, 4.5f, 5.f, 6.5f };
+	Mat m1(2, 3, CV_8U);
+	const int sizes[][2] = { {2, 3}, {2, 3}, {2, 3} };
+	/*Mat(3, sizes, CV_8U, Scalar(300, 50, 40));*/
+	Mat m2(2, 3, CV_8U, Scalar(300));		// 300으로 초기화하려고 보니, CV_8U라 overflow돼서 maximum값인 255로 초기화됨.
+	Mat m3(2, 3, CV_16S, Scalar(300));		// Scalar(300) => Scalar(300, 0, 0, 0)인데 m3가 2x3, 즉 1채널이기 때문에 맨 앞의 300으로만 채워짐
+	Mat m4(2, 3, CV_32F, data);
+	
+	Size sz(2, 3);
+	Mat m5(Size(2, 3), CV_64F);
+	Mat m6(sz, CV_32F, data);
 
-	//// CV_8UC1 => CV_8U채널이 1개 => one 채널
-	//Mat m7 = Mat::ones(3, 5, CV_8UC1);			// 이걸로 0으로 초기화하면, 쓰레기값 방지할 수 있음
-	//Mat m8 = Mat::zeros(3, 5, CV_8UC1);
-	//Mat m9 = Mat::eye(3, 5, CV_8UC1);			// eye: 단위행렬로 만듦
-	//
-	//cout << "[m1] =" << endl << m1 << endl;		
-	//cout << "[m2] =" << endl << m2 << endl;
-	//cout << "[m3] =" << endl << m3 << endl;
-	//cout << "[m4] =" << endl << m4 << endl;
-	//cout << "[m5] =" << endl << m5 << endl;
-	//cout << "[m6] =" << endl << m6 << endl;
-	//cout << "[m7] =" << endl << m7 << endl;
-	//cout << "[m8] =" << endl << m8 << endl;
-	//cout << "[m9] =" << endl << m9 << endl;
+	// CV_8UC1 => CV_8U채널이 1개 => one 채널
+	Mat m7 = Mat::ones(3, 5, CV_8UC1);			// 이걸로 0으로 초기화하면, 쓰레기값 방지할 수 있음
+	Mat m8 = Mat::zeros(3, 5, CV_8UC1);
+	Mat m9 = Mat::eye(3, 5, CV_8UC1);			// eye: 단위행렬로 만듦
+	
+	cout << "[m1] =" << endl << m1 << endl;		
+	cout << "[m2] =" << endl << m2 << endl;
+	cout << "[m3] =" << endl << m3 << endl;
+	cout << "[m4] =" << endl << m4 << endl;
+	cout << "[m5] =" << endl << m5 << endl;
+	cout << "[m6] =" << endl << m6 << endl;
+	cout << "[m7] =" << endl << m7 << endl;
+	cout << "[m8] =" << endl << m8 << endl;
+	cout << "[m9] =" << endl << m9 << endl;
 
 
 	//double a = 32.12345678, b = 2.7;
