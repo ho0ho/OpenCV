@@ -3,7 +3,8 @@
 using namespace cv;
 using namespace std;
 
-	/// 시험범위 : Chapter 03, 04(SparseMat 제외), 05(수업시간에 언급한 내용만), 06, 08, 10(수업시간에 언급한 내용만)
+	/// 시험범위 : Chapter 03, 04(SparseMat 제외), 05(수업시간에 언급한 내용만), 06, 08, 10(수업시간에 언급한 내용만) 
+	// 20문제 
 	// 각 함수의 사용법, 사용용도, 특징(단점, 개선점 등) 알아두기. 
 
 void onMouse(int event, int x, int y, int flags, void* userData);
@@ -134,41 +135,51 @@ int main() {
 											)
 
 	*/
-	image = Mat(300, 500, CV_8UC1, Scalar(120));
-	namedWindow(title, WINDOW_AUTOSIZE);
+	//image = Mat(300, 500, CV_8UC1, Scalar(120));
+	//namedWindow(title, WINDOW_AUTOSIZE);
 
-	// Trackbar Ex. #1
-	int value = 130;
-	createTrackbar("밝기값", title, &value, 255, onChange);
+	//// Trackbar Ex. #1
+	//int value = 130;
+	//createTrackbar("밝기값", title, &value, 255, onChange);
 
-	// Trackbar Ex. #2
-	createTrackbar(bar_name, title, &value, 255, onChange);
-	setMouseCallback(title, onMouse_tr, 0);
+	//// Trackbar Ex. #2
+	//createTrackbar(bar_name, title, &value, 255, onChange);
+	//setMouseCallback(title, onMouse_tr, 0);
 
-	imshow(title, image);
-	waitKey();
+	//imshow(title, image);
+	//waitKey();
 
 
-	/// Drawing - 그림그리기
-	/*	line(), rectangle() 등
-	*
+	/// 그림그리기 - line(), rectangle()
+	/*	void cv::line	(	InputOutputArray 	img,
+							Point				pt1,					// 시작위치
+							Point 				pt2,					// 끝위치
+							const Scalar & 		color,
+							int 				thickness	= 1,	
+							int 				lineType	= LINE_8,	// FILLED, LINE_4, LINE_8, LINE_AA
+							int 				shift		= 0			// 1: Mat값에 1/2효과 => 이동
+						)	
+	 * void cv::rectangle	(	InputOutputArray 	img,
+								Point				pt1,				// leftTop		
+								Point 				pt2,				// rightBottom
+								const Scalar & 		color,
+								int 				thickness	= 1,
+								int 				lineType	= LINE_8,
+								int 				shift		= 0 
+							)	
+	
 	*/
-	//Scalar blue(255, 0, 0), red(0, 0, 255), green(0, 255, 0);			// openCV에서는 BGR순서로 말함
+	//Scalar blue(255, 0, 0), red(0, 0, 255), green(0, 255, 0);			// OpenCV에서는 BGR순서로 말함
 	//Scalar white(255, 255, 255), yellow(0, 255, 255);
 	//
-	//Mat image(400, 600, CV_8UC3, white);
-	//Point pt1(50, 130), pt2(200, 300), pt3(300, 150), pt4(400, 50);
-	//Rect rect(pt3, Size(200, 150));
+	//Mat		image(400, 600, CV_8UC3, white);
+	//Point	pt1(50, 130), pt2(200, 300), pt3(300, 150), pt4(400, 50);
+	//Rect	rect(pt3, Size(200, 150));
 
-	//// line(image, 좌표값1, 좌표값2, 색깔, 두께, LineType, shift값)
-	////		- LineType : FILLED, LINE_4, LINE_8, LINE_AA
-	////		- shift :	1이면 값에 1/2효과 => 이동
 	//line(image, pt1, pt2, red);
 	//line(image, pt3, pt4, green, 2, LINE_AA);
 	//line(image, pt3, pt4, green, 3, LINE_8, 1);
 
-	//// rectangle
-	////		- 
 	//rectangle(image, rect, blue, 2);
 	//rectangle(image, rect, blue, FILLED, LINE_4, 1);
 	//rectangle(image, pt1, pt2, red, 3);
@@ -178,15 +189,23 @@ int main() {
 
 
 	/// Drawing - 글자넣기 
-	/* putText() :
-	*		- 매트릭스 image을 변경시키게 됨
-	*
+	/* void cv::putText	(	InputOutputArray 	img,
+							const String & 		text,
+							Point 				org,
+							int 				fontFace,						// 폰트종류
+							double				fontScale,						
+							Scalar				color,
+							int 				thickness		 = 1,
+							int 				lineType		 = LINE_8,
+							bool 				bottomLeftOrigin = false 
+						)
+						=> 매트릭스 image을 변경시키게 됨
+	
 	*/
 	//Scalar olive(128, 128, 0), violet(221, 160, 221), brown(42, 42, 165);
 	//Point pt1(20, 100), pt2(20, 200), pt3(20, 250);
 
 	//Mat image(300, 500, CV_8UC3, Scalar(255, 255, 255));
-
 	//
 	//putText(image, "SIMPLEX", Point(20, 30), FONT_HERSHEY_SIMPLEX, 1, brown);		// 매트릭스 image에 SIMPLEX라는 글자를 씀 -> 즉, image의 값이 변경된 것!
 	//putText(image, "DUPLEX", pt1, FONT_HERSHEY_DUPLEX, 2, olive);
@@ -198,17 +217,6 @@ int main() {
 
 
 	/// Drawing - putText() Ex2.
-	/* putText(InputOutputArray 	img,
-				const String&		text,
-				Point 				org,
-				int 				fontFace,
-				double 				fontScale,
-				Scalar 				color,
-				int 				thickness = 1,
-				int 				lineType = LINE_8,
-				bool 				bottomLeftOrigin = false
-				)
-	*/
 	//Scalar orange(0, 165, 255), blue(255, 0, 0), magenta(255, 0, 255);
 	//Mat image(300, 500, CV_8UC3, Scalar(255, 255, 255));
 
@@ -298,9 +306,14 @@ int main() {
 	//waitKey();
 
 
-	/// 이미지 첨부하기 #1
-	//// 프로젝트파일(OpenCV0604)의 루트디렉토리(.vcsproj이 있는 곳)에 images.jpg 세팅해놓고 경로 입력하기
-	////String filename = "image/images.jpg";	// 흑백예제
+
+	/// 이미지 첨부하기 #1 - imread()
+	/* 이미지폴더 => 프로젝트파일(OpenCV0604)의 루트디렉토리(.vcsproj이 있는 곳)에 images.jpg 세팅해놓고 경로 입력하기
+		Mat cv::imread	(	const String & 	filename,
+							int 			flags = IMREAD_COLOR 
+						)	
+	 */
+	////String filename = "image/images.jpg";			// 흑백예제
 	//String filename = "image/maxresdefault.jpg";	// 컬러예제
 
 	//// 파일 filename을 흑백(IMREAD_GRAYSCALE)으로 읽어들이겠다
@@ -329,7 +342,7 @@ int main() {
 	//Mat color2unchanged1 = imread(filename1, IMREAD_UNCHANGED);
 	//Mat color2unchanged2 = imread(filename2, IMREAD_UNCHANGED);
 
-	///*CV_ASSERT(color2unchanged1.data && color2unchanged2.data);*/
+	////CV_ASSERT(color2unchanged1.data && color2unchanged2.data);
 	//CV_Assert(color2unchanged1.data);
 	//CV_Assert(color2unchanged2.data);	
 
@@ -350,7 +363,11 @@ int main() {
 
 
 	/// 이미지 저장하기 - imwrite()
-	//// imwrite() => 맨 첫인자로 파일명이 들어가는데, 이 파일명에 선언된 확장자대로 파일을 만든다.
+	/* bool cv::imwrite	(	const String & 			filename,				// 이름에 선언된 확장자대로 파일이 만들어진다.
+							InputArray 				img,
+							const std::vector<int>& params = std::vector<int>()
+						)
+	 */
 	//Mat image = imread("image/maxresdefault.jpg", IMREAD_COLOR);
 	//CV_Assert(image.data);
 
@@ -375,26 +392,26 @@ int main() {
 
 
 	/// 이미지 변환하기 - convertTo()
-	//// 영역에 맞게 값 변환해줘야함
-	//Mat img8 = imread("image/maxresdefault.jpg", IMREAD_COLOR);
-	//CV_Assert(img8.data);
+	// 영역에 맞게 값 변환해줘야함
+	Mat img8 = imread("image/maxresdefault.jpg", IMREAD_COLOR);
+	CV_Assert(img8.data);
 
-	//Mat img16, img32;
-	//// 65535: 화소스케일(16bits), 32F는 0~1이므로 값을 분할
-	//img8.convertTo(img16, CV_16U, 65535 / 255.0);
-	//img8.convertTo(img32, CV_32F, 1 / 255.0f);
+	Mat img16, img32;
+	// 65535: 화소스케일(16bits), 32F는 0~1이므로 값을 분할
+	img8.convertTo(img16, CV_16U, 65535 / 255.0);
+	img8.convertTo(img32, CV_32F, 1 / 255.0f);
 
-	//Rect roi(10, 10, 3, 3);
-	//cout << "img8 행렬의 일부 " << endl << img8(roi) << endl << endl;
-	//cout << "img16 행렬의 일부 " << endl << img16(roi) << endl << endl;
-	//cout << "img32 행렬의 일부 " << endl << img32(roi) << endl << endl;
+	Rect roi(10, 10, 3, 3);
+	cout << "img8 행렬의 일부 " << endl << img8(roi) << endl << endl;
+	cout << "img16 행렬의 일부 " << endl << img16(roi) << endl << endl;
+	cout << "img32 행렬의 일부 " << endl << img32(roi) << endl << endl;
 
-	//imwrite("image/write_test_16.tif", img16);
-	//imwrite("image/write_test_32.tif", img32);
+	imwrite("image/write_test_16.tif", img16);
+	imwrite("image/write_test_32.tif", img32);
 
-	//imshow("img16", img16);
-	//imshow("img32", img32);
-	//waitKey();
+	imshow("img16", img16);
+	imshow("img32", img32);
+	waitKey();
 
 
 
@@ -549,6 +566,7 @@ int main() {
 	//fs.release();
 
 
+
 	/// xml로 이미지 불러오고 함수 사용하기(평균, 표준편차)
 	//FileStorage fs_read("file/test.xml", FileStorage::READ);
 	//CV_Assert(fs_read.isOpened());
@@ -581,6 +599,7 @@ int main() {
 	//waitKey();
 	//fs_read.release();
 	//fs_write.release();
+
 
 
 	/// 이미지 갖고놀기 - 복제 repeat(), 전치 transpose(), 반전 flip() 
@@ -618,6 +637,7 @@ int main() {
 	//waitKey();
 
 
+
 	/// 채널 - 합치기 merge(), 분할 split() 
 	// 단일채널 3개 ch0, ch1, ch2
 	//Mat ch0(3, 4, CV_8U, Scalar(10));
@@ -642,6 +662,7 @@ int main() {
 	//cout << "[bgr_split[2]] = " << endl << bgr_split[2] << endl << endl;
 
 
+
 	/// 실제 이미지 분리해보기
 	//Mat image = imread("image/bn1.jpg", IMREAD_COLOR);
 	//CV_Assert(image.data);
@@ -654,6 +675,7 @@ int main() {
 	//imshow("green channel", bgr[1]);
 	//imshow("red channel", bgr[2]);
 	//waitKey();
+
 
 
 	/// 다채널에서 임의채널 특정해서 뽑기 - mixChannels()
@@ -690,6 +712,7 @@ int main() {
 	//cout << "[ch_012] = " << endl << ch_012 << endl << endl;
 	//cout << "[ch_13] = " << endl << ch_13 << endl;
 	//cout << "[ch_2] = " << endl << ch_2 << endl;
+
 
 
 	/// Matrix 계산 - add(), sub(), divide(), mask
@@ -1345,10 +1368,10 @@ int main() {
 							int 			ddepth,
 							int 			dx,
 							int 			dy,
-							int 			ksize = 3,
-							double			scale = 1,
-							double 			delta = 0,
-							int 			borderType = BORDER_DEFAULT 
+							int 			ksize		= 3,
+							double			scale		= 1,
+							double 			delta		= 0,
+							int 			borderType	= BORDER_DEFAULT 
 						)	
 	*/
 	//Mat image = imread("image/bn3.jpg", IMREAD_GRAYSCALE);
@@ -1417,6 +1440,7 @@ int main() {
 			팽창연산을 위한 mask의 연산방식 =>  1개이상 일치: 1, 모두 불일치: 0	=> 1이 되기 쉬움(팽창)	
 
 		3) 열림, 닫힘 연삼
+			용도: 침식, 팽창연산들은 단독으로 사용되지 않고, 메인 작업 전 침식+팽창을 혼용한 전처리작업을 통해 이미지를 보정한 뒤(잡음제거 등) 사용한다. 
 			3-1) 열림 연산(Opening operation)
 					침식 연산 => 팽창 연산
 					침식 연산으로는 객체는 축소, 배경부분의 미세한 잡음을 제거하는 용도로 사용하고,
@@ -1428,14 +1452,14 @@ int main() {
 
 	 */
 	
-	/// Morphology - 침식연산
+	///	Morphology - 침식연산
 	//Mat image = imread("image/erosion.jpg", IMREAD_GRAYSCALE);
 	//CV_Assert(image.data);
 
 	//Mat th_img, dst;
 	//threshold(image, th_img, 128, 255, THRESH_BINARY);			// 먼저 binary image로 만들어줌 for Morphology
 
-	//uchar data[] = { 0, 1, 0, 
+	//uchar data[] = { 0, 1, 0,			
 	//				   1, 1, 1, 
 	//				   0, 1, 0 };
 	//Mat mask(3, 3, CV_8UC1, data);
@@ -1464,6 +1488,38 @@ int main() {
 	//imshow("image", image);
 	//imshow("이진 영상", th_img);
 	//imshow("Dilation", dst);
+	//waitKey(0);
+
+
+	/// Morphology - 열림, 닫힘 연산
+	/*	void cv::morphologyEx	(	InputArray		src,
+									OutputArray 	dst,
+									int 			op,
+									InputArray		kernel,
+									Point 			anchor		 = Point(-1,-1),
+									int 			iterations	 = 1,
+									int 			borderType	 = BORDER_CONSTANT,
+									const Scalar & 	borderValue	 = morphologyDefaultBorderValue() 
+								)	
+	
+	 */
+	//Mat image = imread("image/morphology.jpg", IMREAD_GRAYSCALE);
+	//CV_Assert(image.data);
+
+	//Mat th_img, dst1, dst2;
+	//threshold(image, th_img, 110, 255, THRESH_BINARY);			
+
+	//Matx <uchar, 3, 3> mask;		
+	//mask << 0, 1, 0,
+	//	    1, 1, 1, 
+	//	    0, 1, 0; 
+	//
+	//morphologyEx(th_img, dst1, MORPH_OPEN, mask);
+	//morphologyEx(th_img, dst2, MORPH_CLOSE, mask);
+
+	//imshow("image", image);
+	//imshow("Opening", dst1);
+	//imshow("Closing", dst2);
 	//waitKey(0);
 
 

@@ -19,33 +19,33 @@ int main() {
 		typedef Point_<float> Point2f
 		typedef Point_<double> Point2d
 	*/
-	Point_<int> pt1(100, 200);
-	Point_<float> pt2(92.3f, 125.23f);
-	Point_<double> pt3(100.2, 300.9);
+	//Point_<int> pt1(100, 200);
+	//Point_<float> pt2(92.3f, 125.23f);
+	//Point_<double> pt3(100.2, 300.9);
 
-	Point2i pt4(120, 69);									
-	Point2f pt5(0.3f, 0.f), pt6(0.f, 0.4f);
-	Point2d pt7(0.25, 0.6);
+	//Point2i pt4(120, 69);									
+	//Point2f pt5(0.3f, 0.f), pt6(0.f, 0.4f);
+	//Point2d pt7(0.25, 0.6);
 
-	Point pt8 = pt1 + (Point)pt2;				
+	//Point pt8 = pt1 + (Point)pt2;				
 
-	// 스칼라곱: x, y 모두에 곱해진다.
-	Point2f pt9 = pt6 * 3.14f;
-	Point2d pt10 = (pt3 + (Point2d)pt6) * 10;
+	//// 스칼라곱: x, y 모두에 곱해진다.
+	//Point2f pt9 = pt6 * 3.14f;
+	//Point2d pt10 = (pt3 + (Point2d)pt6) * 10;
 
-	cout << "pt8 = " << pt8.x << ", " << pt8.y << endl;		// 192, 325
-	cout << "[pt9] = " << pt9 << endl;						// [0, 1.256]
-	cout << (pt2 == pt6) << endl;								// 0
-	
-	// 내적 
-	// 2차원좌표이므로 2차원벡터로 보고 내적계산.
-	// x1*x2 + y1*y2
-	cout << "pt7과 pt8의 내적: " << pt8.dot(pt7) << endl;		// 243
-
-
+	//cout << "pt8 = " << pt8.x << ", " << pt8.y << endl;		// 192, 325
+	//cout << "[pt9] = " << pt9 << endl;						// [0, 1.256]
+	//cout << (pt2 == pt6) << endl;								// 0
+	//
+	//// 내적 
+	//// 2차원좌표이므로 2차원벡터로 보고 내적계산.
+	//// x1*x2 + y1*y2
+	//cout << "pt7과 pt8의 내적: " << pt8.dot(pt7) << endl;		// 243
 
 
-	///* 3차원 *///
+
+
+	/// 3차원 좌표 - Point3i, Point3f, Point3d 객체 
 	//Point3_<int> pt1(100, 200, 300);
 	//Point3_<float> pt2(92.3f, 125.23f, 250.f);
 	//Point3f pt3(0.3f, 0.f, 15.7f);
@@ -56,26 +56,30 @@ int main() {
 	//Point3d pt7 = ((Point3d)pt3 + pt4) * 10.f;
 
 	//cout << "두벡터(pt4, pt7)의 내적 " << pt4.dot(pt7) << endl;			// 16322
-	//cout << "pt5 =" << pt5.x << endl;			// 192
+	//cout << "pt5 =" << pt5.x << endl;				// 192
 	//cout << "[pt6] = " << pt6 << endl;			// 289.822, 393.222, 785
 	//cout << "[pt7] = " << pt6 << endl;			// 289.822, 393.222, 785
 
 
 
 
-	///* Size (Width, Height) *///
-	//Size_<int> sz1(100, 200);
-	//Size_<float> sz2(192.3f, 25.3f);
-	//Size_<double> sz3(100.2, 30.9);
+	/// 영역 - Size, Size2f, Size2d
+	/* typedef Size_<int> Size
+		<필드>		width, height
+		<메소드>		area()
+	 */
+	//Size_<int>		sz1(100, 200);
+	//Size_<float>	sz2(192.3f, 25.3f);
+	//Size_<double>	sz3(100.2, 30.9);
 
-	//Size sz4(120, 69);
-	//Size2f sz5(0.3f, 0.f);
-	//Size2d sz6(0.25, 0.6);
+	//Size			sz4(120, 69);
+	//Size2f			sz5(0.3f, 0.f);
+	//Size2d			sz6(0.25, 0.6);
 
-	//Point2d pt1(0.25, 0.6);
-	//Size2i sz7 = sz1 + (Size2i)sz2;
-	//Size2d sz8 = sz3 - (Size2d)sz4;
-	//Size2f sz9 = sz5 + (Size2f)pt1;
+	//Point2d			pt1(0.25, 0.6);
+	//Size2i			sz7				= sz1 + (Size2i)sz2;
+	//Size2d			sz8				= sz3 - (Size2d)sz4;
+	//Size2f			sz9				= sz5 + (Size2f)pt1;
 
 	//cout << "sz1.width, sz1.height = " << sz1.width << ", " << sz1.height << endl;			// 100, 200	
 	//cout << "sz1의 넓이 = " << sz1.area() << endl;			// 20000
@@ -85,32 +89,43 @@ int main() {
 
 
 
-	///* Rect *///
-	//Size2d sz(100.5, 60.0);
-	//Point2f pt1(20.f, 30.f), pt2(100.f, 200.f);
 
-	//// 생성자1. left, top, width, height (주의)
-	// Rect_<int> rect1(10, 10, 30, 50);
-	//// 생성자2. Point2f(left, top), Point2f(right, bottom)
-	// Rect_<float> rect2(pt1, pt2);
-	// Rect_<double> rect3(Point2d(20.5, 10), sz);
+	/// 도형 - 사각형 Rect, Rect2f, Rect2d
+	/*  typedef Rect_<int> Rect2i
+		typedef Rect2i Rect
+			<필드>		x, y, width, height
+			<메서드>		tl(), br(), size()
+				- 생성자1. Rect rect(left, top, width, height)
+				- 생성자2. Rect rect(Point(left, top), Point2f(right, bottom)
+				- 생성자3. Rect rect(Point(left, top), Size(width, height))			
+	
+	 */
+	Size2d			sz(100.5, 60.0);
+	Point2f			pt1(20.f, 30.f), pt2(100.f, 200.f);
 
-	//// Rect에 Point 더하기 
-	//// rect4는, rect1을 pt1좌표값만큼 "이동"시킨 영역!
-	// Rect rect4 = rect1 + (Point)pt1;
-	// Rect2f rect5 = rect2 + (Size2f)sz;
 
-	//// &연산: 두 rect영역의 겹쳐진 부분의 영역(rect)을 리턴
-	//// |연산: 두 rect영역을 포함하는 전체영역(rect)을 리턴 -> 이때, 합쳐진 전체모양 자체가 아닌, 두 영역을 포함하는 Rect영역으로 리턴
-	// Rect2d rect6 = rect1 & (Rect)rect2;
+	Rect_<int>		rect1(10, 10, 30, 50);
+	Rect_<float>	rect2(pt1, pt2);
+	Rect_<double>	rect3(Point2d(20.5, 10), sz);
 
-	// cout << "rect3 = " << rect3.x << ", " << rect3.y << " => " << rect3.width << "x" << rect3.height << endl;	// 20.5, 10, 100.5x60
-	//// tl() : topleft
-	//// br() : bottomright
-	//cout << "rect4 = " << rect4.tl() << " " << rect4.br() << endl;	// [30, 40] [60, 90]
-	//cout << "rect5 크기 = " << rect5.size() << endl;					// [180.5 x 230]
-	//cout << "[rect6] = " << rect6 << endl;							// [20 x 30 from (20, 30]
+	// Rect와 Point간의 연산
+	Rect			rect4 = rect1 + (Point)pt1;		// rect4는, rect1을 pt1좌표값만큼 "이동"시킨 영역!
+	Rect2f			rect5 = rect2 + (Size2f)sz;
 
+   // &연산: 두 rect영역의 겹쳐진 부분의 영역(rect)을 리턴
+   // |연산: 두 rect영역을 포함하는 전체영역(rect)을 리턴 -> 이때, 합쳐진 전체모양 자체가 아닌, 두 영역을 포함하는 Rect영역으로 리턴
+	Rect2d rect6 = rect1 & (Rect)rect2;
+
+	cout << "rect3 = " << rect3.x << ", " << rect3.y << " => " << rect3.width << "x" << rect3.height << endl;	// 20.5, 10, 100.5x60
+   // tl() : topleft
+   // br() : bottomright
+	cout << "rect4 = " << rect4.tl() << " " << rect4.br() << endl;	// [30, 40] [60, 90]
+	cout << "rect5 크기 = " << rect5.size() << endl;					// [180.5 x 230]
+	cout << "[rect6] = " << rect6 << endl;							// [20 x 30 from (20, 30]
+
+
+
+	
 	///* Vec *///
 	// 초기화 없는 값은 0으로 할당해줌.
 	// typedef Vec<int, 2> Vec2i				... n = 2, 3, 4, 6, 8
@@ -151,21 +166,21 @@ int main() {
 	// Blue, Green, Red, Alpha 값을 저장하기 위한 용도 (*alpha는 투명도를 설정하는 값)
 	// typedef Scalar_<double> Scalar;
 	// 값을 모두 지정하지 않으면 0으로 초기화
-	Scalar_<uchar> red(0, 0, 255);		// 0 0 255 0
-	Scalar_<int> blue(255, 0, 0);		// 255 0 0 0
-	Scalar_<double> color1(500);		// 500 0 0 0
-	Scalar_<float> color2(100.f, 200.f, 125.9f);	// 100 200 125.9 0
+	//Scalar_<uchar> red(0, 0, 255);		// 0 0 255 0
+	//Scalar_<int> blue(255, 0, 0);		// 255 0 0 0
+	//Scalar_<double> color1(500);		// 500 0 0 0
+	//Scalar_<float> color2(100.f, 200.f, 125.9f);	// 100 200 125.9 0
 
-	Vec3d green(0, 0, 300.5);		 // 0 0 300.5 0
-	Scalar green1 = color1 + (Scalar)green;		// 500 0 300.5 0
-	Scalar green2 = color2 + (Scalar_<float>)green;		// 100 200 426.4 0
+	//Vec3d green(0, 0, 300.5);		 // 0 0 300.5 0
+	//Scalar green1 = color1 + (Scalar)green;		// 500 0 300.5 0
+	//Scalar green2 = color2 + (Scalar_<float>)green;		// 100 200 426.4 0
 
-	cout << "blue = " << blue[0] << ", " << blue[1] << ", " << blue[2] << endl;		// 255, 0, 0
-	cout << "red = " << red << endl;					// 0 0 255 0
-	cout << "green = " << green << endl << endl;		// 0 0 300.5
-	cout << "(Scalar)green = " << (Scalar)green << endl;	// 0 0 300.5 0
-	cout << "green1 = " << green1 << endl;					// 500 0 300.5 0
-	cout << "green2 = " << green2 << endl;					// 100 200 426.4 0
+	//cout << "blue = " << blue[0] << ", " << blue[1] << ", " << blue[2] << endl;		// 255, 0, 0
+	//cout << "red = " << red << endl;					// 0 0 255 0
+	//cout << "green = " << green << endl << endl;		// 0 0 300.5
+	//cout << "(Scalar)green = " << (Scalar)green << endl;	// 0 0 300.5 0
+	//cout << "green1 = " << green1 << endl;					// 500 0 300.5 0
+	//cout << "green2 = " << green2 << endl;					// 100 200 426.4 0
 
 
 	/////* 행렬 Matx													
@@ -678,7 +693,6 @@ void print_locateROI(String str, Mat m) {
 	// size() => width X height
 	cout << "부모크기 " << size << ", " << "[" << str << "] = " << m.size() << " from " << pt << endl;
 }
-
 
 void print_matInfo2(String name, Mat m) {
 	String mat_type;
