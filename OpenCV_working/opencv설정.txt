@@ -1,0 +1,9 @@
+OpenCV 설치
+https://sourceforge.net/projects/opencvlibrary/files/3.4.5/opencv-3.4.5-vc14_vc15.exe/download
+
+OpenCV 설정하기
+D:\OpenCV_working\opencv\build\x64\vc15\bin
+이 주소를 환경변수>시스템변수>PATH에 추가하기
+
+비주얼스튜디오>빈프로젝트
+속성관리자 창(x64버전만 건드릴예정. 3.4.5버전은 x32는 사용하지 않음)

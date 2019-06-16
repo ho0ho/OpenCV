@@ -188,7 +188,7 @@ int main() {
 	//waitKey();
 
 
-	/// Drawing - 글자넣기 
+	/// 글자넣기 - putText()
 	/* void cv::putText	(	InputOutputArray 	img,
 							const String & 		text,
 							Point 				org,
@@ -216,7 +216,7 @@ int main() {
 	//waitKey();
 
 
-	/// Drawing - putText() Ex2.
+	/// 그림그리기 - circle()
 	//Scalar orange(0, 165, 255), blue(255, 0, 0), magenta(255, 0, 255);
 	//Mat image(300, 500, CV_8UC3, Scalar(255, 255, 255));
 
@@ -238,7 +238,7 @@ int main() {
 
 
 
-	/// Drawing - RotateRect()
+	/// 그림그리기 - RotateRect()
 	//Mat image(300, 500, CV_8UC1, Scalar(255));
 	//Point2f center(250, 150), pts[4];
 	//Size2f size(300, 100);
@@ -259,7 +259,7 @@ int main() {
 
 
 
-	/// Drawing - ellipse()
+	/// 그림그리기 - ellipse()
 	/* void cv::ellipse	(	InputOutputArray 	img,
 							Point 				center,
 							Size 				axes,
@@ -393,29 +393,29 @@ int main() {
 
 	/// 이미지 변환하기 - convertTo()
 	// 영역에 맞게 값 변환해줘야함
-	Mat img8 = imread("image/maxresdefault.jpg", IMREAD_COLOR);
-	CV_Assert(img8.data);
+	//Mat img8 = imread("image/maxresdefault.jpg", IMREAD_COLOR);
+	//CV_Assert(img8.data);
 
-	Mat img16, img32;
-	// 65535: 화소스케일(16bits), 32F는 0~1이므로 값을 분할
-	img8.convertTo(img16, CV_16U, 65535 / 255.0);
-	img8.convertTo(img32, CV_32F, 1 / 255.0f);
+	//Mat img16, img32;
+	//// 65535: 화소스케일(16bits), 32F는 0~1이므로 값을 분할
+	//img8.convertTo(img16, CV_16U, 65535 / 255.0);
+	//img8.convertTo(img32, CV_32F, 1 / 255.0f);
 
-	Rect roi(10, 10, 3, 3);
-	cout << "img8 행렬의 일부 " << endl << img8(roi) << endl << endl;
-	cout << "img16 행렬의 일부 " << endl << img16(roi) << endl << endl;
-	cout << "img32 행렬의 일부 " << endl << img32(roi) << endl << endl;
+	//Rect roi(10, 10, 3, 3);
+	//cout << "img8 행렬의 일부 " << endl << img8(roi) << endl << endl;
+	//cout << "img16 행렬의 일부 " << endl << img16(roi) << endl << endl;
+	//cout << "img32 행렬의 일부 " << endl << img32(roi) << endl << endl;
 
-	imwrite("image/write_test_16.tif", img16);
-	imwrite("image/write_test_32.tif", img32);
+	//imwrite("image/write_test_16.tif", img16);
+	//imwrite("image/write_test_32.tif", img32);
 
-	imshow("img16", img16);
-	imshow("img32", img32);
-	waitKey();
+	//imshow("img16", img16);
+	//imshow("img32", img32);
+	//waitKey();
 
 
 
-	/// 비디오 연결 - VideoCapture()
+	/// 비디오 연결 - VideoCapture() #1
 	//// - 카메라있는 컴퓨터에서 확인가능(노트북 등)	
 	//VideoCapture capture(0);		// 연결되어 있는 첫번째 카메라장치 -> 보통은 이미 내장되어있는 카메라를 의미
 	//if (!capture.isOpened()) {
@@ -480,10 +480,10 @@ int main() {
 	//fs << "age" << 21;
 	//fs << "address" << "Chosun";
 
-	//// Sequence타입 => []를 명시하여 값넣어주기
+	//// Sequence타입 picture => []를 명시하여 값넣어주기
 	//fs << "picture" << "[" << "pic1.jpg" << "pic2.jpg" << "pic3.jpg" << "]";
 
-	//// Dictionary타입 => {}를 명시하여 값넣어주기 
+	//// Dictionary타입 score => {}를 명시하여 값넣어주기 
 	//fs << "score" << "{";
 	//fs << "math" << 100;
 	//fs << "Java" << 90;
@@ -823,11 +823,15 @@ int main() {
 	/// 이미지 연산 - threshold() 
 	/* double cv::threshold	(	InputArray 		src,
 								OutputArray 	dst,
-								double 			thresh,		// 이값을 안넘으면 0, 넘으면 maxval값으로 설정
+								double 			thresh,		// 기준값 		
 								double			maxval,
-								int 			type
+								int 			type		
 								)
-	 *
+	 * void cv::bitwise_and	(	InputArray 	src1,
+								InputArray 	src2,
+								OutputArray 	dst,
+								InputArray 	mask = noArray() 
+							)	
 	 *
 	 */
 	//Mat image = imread("image/bn3.jpg", IMREAD_COLOR);
@@ -862,6 +866,19 @@ int main() {
 
 
 	/// 
+	/* void cv::min	(	InputArray 		src1,
+						InputArray 		src2,
+						OutputArray 	dst			// 각 화소별로 src1과 src2를 비교하여 최소값(min)을 dst의 화소로 지정
+						)
+	 *
+	 * void cv::minMaxIdx	(	InputArray		src,
+								double * 		minVal,
+								double * 		maxVal = 0,
+								int * 			minIdx = 0,
+								int * 			maxIdx = 0,
+								InputArray 		mask = noArray()
+							)
+	 */
 	//uchar data[] = { 10, 200,   5,   7,   9,
 	//				 15,  35,  60,  80, 170,
 	//				 100,  2,  55,  37,  70 };
@@ -883,10 +900,10 @@ int main() {
 	//cout << "[m_max] = " << endl << m_max << endl << endl;
 
 	//cout << "m1 행렬 원소 최소값: " << minVal << endl;
-	//cout << "m1 행렬 원소 최소값 좌표:  " << minIdx[1] << ", " << minIdx[0] << endl;
+	//cout << "m1 행렬 원소 최소값 좌표:  " << minIdx[0] << ", " << minIdx[1] << endl;
 
 	//cout << "m1 행렬 원소 최대값: " << maxVal << endl;
-	//cout << "m1 행렬 원소 최대값 좌표:  " << maxIdx[1] << ", " << maxIdx[0] << endl;
+	//cout << "m1 행렬 원소 최대값 좌표:  " << maxIdx[0] << ", " << maxIdx[1] << endl;
 
 	//cout << "m1 행렬 원소 최소값 좌표: " << minLoc << endl;
 	//cout << "m1 행렬 원소 최대값 좌표: " << maxLoc << endl;
@@ -919,15 +936,20 @@ int main() {
 							int 		flags = 0		// GEMM_1_T : src1을 전치행렬로 바꿔서 연산에 참여시킴
 														// GEMM_2_T : src2를 전치행렬로 바꿔서 연산에 참여시
 						)
+				=> dst = alpha*src1*src2 + beta*src3
 	 */
-	//Matx23f	src1(1, 2, 3, 4, 5, 1);
-	//Matx23f	src2(5, 4, 2, 3, 2, 1);
-	//Matx32f	src3(5, 4, 2, 3, 2, 1);
+	//Matx23f	src1(1, 2, 3,
+	//			 4, 5, 1);
+	//Matx23f	src2(5, 4, 2,
+	//			 3, 2, 1);
+	//Matx32f	src3(5, 4,
+	//			 2, 3,
+	//			 2, 1);
 	//Mat dst1, dst2, dst3;
 	//double alpha = 1.0, beta = 1.0;
 
+	//// dst1 = dst2 = dst3 = src1*src2
 	//gemm(src1, src2, alpha, Mat(), beta, dst1, GEMM_1_T);		// Mat() : 빈 matrix
-	//// dst1 = alpha*(src1)(src2) + beta*Mat();
 	//gemm(src1, src2, alpha, noArray(), beta, dst2, GEMM_2_T);	// noArray()도 빈 matrix를 의미.
 	//gemm(src1, src3, alpha, noArray(), beta, dst3);
 
@@ -946,6 +968,7 @@ int main() {
 							 OutputArray	dst,
 							 InputArray		m
 							)
+				=> dst = m * src
 	 * void cv::line	   ( InputOutputArray 	img,
 							 Point				pt1,
 							 Point 				pt2,
@@ -978,7 +1001,7 @@ int main() {
 	//waitKey();
 
 
-	/// 영상처리 #1.
+	/// 영상처리 #1. 각 화소 처리 - at<T>(i, j)
 	// 영상처리 - 화소처리, 영역처리, 기하학처리(형태를 이동, 변형) 등
 	//Mat image1(50, 512, CV_8UC1, Scalar(0));
 	//Mat image2(50, 512, CV_8UC1, Scalar(0));
@@ -1003,7 +1026,7 @@ int main() {
 	//}
 
 	//Rect roi(50, 50, 20, 15);
-	//Mat roi_img = image(roi);
+	//Mat roi_img = image(roi);						// Mat m(Rect r);	영역 r부분에 대한 매트릭스 m.
 	//cout << "[roi_img] = " << endl;
 	//for (int i = 0; i < roi_img.rows; i++) {
 	//	for (int j = 0; j < roi_img.cols; j++) {
@@ -1031,7 +1054,7 @@ int main() {
 	//for (int i = 0; i < image.rows; i++) {
 	//	for (int j = 0; j < image.cols; j++) {
 	//		/*dst4.at<uchar>(i, j) = saturate_cast<uchar>(image.at<uchar>(i, j) + 100);*/
-	//		dst4.at<uchar>(i, j) = image.at<uchar>(i, j) + 100;		// 오버플로우가 발생하면 saturate_cast에 의해 값이 조정되기때문
+	//		dst4.at<uchar>(i, j) = image.at<uchar>(i, j) + 100;		// 오버플로우가 발생
 	//		dst5.at<uchar>(i, j) = 255 - image.at<uchar>(i, j);
 	//	}
 	//}
@@ -1179,12 +1202,13 @@ int main() {
 	//waitKey();
 
 
-	///	화소 처리
+	///	화소 처리 - cvtColor()
 	/* void cv::cvtColor (	InputArray 		src,
 							OutputArray 	dst,
 							int 			code,
 							int 			dstCn = 0 
 						 )
+				=> code값에 따라 변환기준을 정하며, 컬러공간을 변환해주는 함수다.
 	 *
 	 */
 	//Mat BGR_img = imread("image/color_space.jpg", IMREAD_COLOR);
@@ -1209,10 +1233,10 @@ int main() {
 
 
 
-	/// 영역(domain) 처리 - Convolution 
+	/// 영역(domain) 처리 - "Convolution" 
 	/* 
 	 - spatial domain, area based processing
-	 기존의 화소처리는 화소값 각각에 대한연산 수행
+	 기존의 화소처리는 화소값 각각에 대해 연산 수행
 	 area based processing는 mask를 기반으로 영역에 대한 연산수행.
 
 	 # 마스크기반 영역처리
@@ -1236,7 +1260,9 @@ int main() {
 		 - 엣지 검출방법
 			3-1) 차분연산: 이웃하는 화소의 차분이 특정 임계값 이상인 지점 찾기
 			3-2) 1차 또는 2차 미분 마스크 이용
-				-> 미분: 화소값이 급격하게 변하는 지점(= Edge) -> 기울기가 큰 곳 -> 미분값이 큰 곳
+				-> 미분: 화소값이 급격하게 변하는 지점(= Edge) -> 기울기의 절대값이 큰 곳 -> 미분값이 큰 곳
+					Gx = f(x+1, y) - f(x, y) => (x, y)지점에서 x축으로의 Edge => 이 식이 나오려면 (x,y)지점엔 -1, (x+1, y)지점엔 1 있는 mask여야함
+					Gy = f(x, y+1) - f(x, y) => (x, y)지점에서 y축으로의 Edge => 이 식이 나오려면 (x,y)지점엔 -1, (x, y+1)지점엔 1 있는 mask여야함
 				<1차> Roberts, Prewitt, Sobel 등 
 				<2차> 라플라시안, LoG(라플라시안 of 가우시안), DoG(Difference of 가우시안) 기법
 			3-3) 유사 연산자 기법: 각 화소가 자신의 주변 9개의 화소들과 감산한 값 중 최대값을 결정하여 해당 화소의 값으로 결정 
@@ -1248,7 +1274,7 @@ int main() {
 	 *
 	 */
 
-	/// 영역 처리 - 블러링 & 샤프닝
+	/// 영역 처리 - 블러링 & 샤프닝 fliter() 
 	//Mat	image = imread("image/menu3.jpg", IMREAD_GRAYSCALE);	
 	//CV_Assert(image.data);
 
@@ -1313,12 +1339,6 @@ int main() {
 	//waitKey();
 
 
-	/// 영역 처리 - Edge 검출(미분 마스크 이용) 
-	/* 미분: 화소값이 급격하게 변하는 지점(= Edge) -> 기울기가 큰 곳 -> 미분값이 큰 곳
-	   Gx = f(x+1, y) - f(x, y) => (x, y)지점에서 x축으로의 Edge => 이 식이 나오려면 (x,y)지점엔 -1, (x+1, y)지점엔 1 있는 mask여야함
-	   Gy = f(x, y+1) - f(x, y) => (x, y)지점에서 y축으로의 Edge => 이 식이 나오려면 (x,y)지점엔 -1, (x, y+1)지점엔 1 있는 mask여야함
-	 */ 
-
 
 	/// 영역 처리 - Edge 검출(1차미분) #1. Roberts
 	//Mat image = imread("image/images.jpg", IMREAD_GRAYSCALE);
@@ -1373,7 +1393,12 @@ int main() {
 							double 			delta		= 0,
 							int 			borderType	= BORDER_DEFAULT 
 						)	
-	*/
+	 * convertScaleAbs() 
+	     1) abs() 적용 
+		 2) 수식 alpha*dst1 + beta(alpha, beta를 인수로 넣음,alpha = 1, beta = 0이 디폴트)
+		 3) CV_8U로 설정
+	 
+	 */
 	//Mat image = imread("image/bn3.jpg", IMREAD_GRAYSCALE);
 	//CV_Assert(image.data);
 
@@ -1405,8 +1430,8 @@ int main() {
 	//waitKey();
 
 
-	/// 모폴로지(Morphology)
-	/* 형태학(Shape)
+	/// 모폴로지(Morphology, 형태학)
+	/*  형태학(Shape)
 		1) 침식연산(Erosion operation)
 			객체의 크기는 축소(침식)되는데 배경은 확대됨
 			- Salt noise : 까만바탕에 흰 잡음이 쩜쩜쩜
@@ -1414,7 +1439,7 @@ int main() {
 			영상 내 작은 크기의 잡음 제거 효과를 내기도 한다(이 방법이 항상 모든 잡음 제거효과를 내는건 아니다)
 			기본적으로 binary image(CV_8U => 0/255, CV_32f => 0/1)에 사용된다
 
-			침식연산을 위한 mask의 연산방식 => 1개이상 불일치: 0, 모두 일치: 0	=> 1이 되기 어려움(침식)
+			침식연산을 위한 mask의 연산방식 => 1개이상 불일치: 0, 모두 일치: 1	=> 1이 되기 어려움(침식)
 
 			<입력영상>	<3x3 침식 마스크>  =>  <출력영상>
 			0 1 1 1 0		0 1 0			0 0
@@ -1453,6 +1478,17 @@ int main() {
 	 */
 	
 	///	Morphology - 침식연산
+	/*	void cv::morphologyEx	(	InputArray		src,
+									OutputArray 	dst,
+									int 			op,
+									InputArray		kernel,
+									Point 			anchor		 = Point(-1,-1),
+									int 			iterations	 = 1,
+									int 			borderType	 = BORDER_CONSTANT,
+									const Scalar & 	borderValue	 = morphologyDefaultBorderValue()
+								)
+
+	 */
 	//Mat image = imread("image/erosion.jpg", IMREAD_GRAYSCALE);
 	//CV_Assert(image.data);
 
@@ -1492,17 +1528,6 @@ int main() {
 
 
 	/// Morphology - 열림, 닫힘 연산
-	/*	void cv::morphologyEx	(	InputArray		src,
-									OutputArray 	dst,
-									int 			op,
-									InputArray		kernel,
-									Point 			anchor		 = Point(-1,-1),
-									int 			iterations	 = 1,
-									int 			borderType	 = BORDER_CONSTANT,
-									const Scalar & 	borderValue	 = morphologyDefaultBorderValue() 
-								)	
-	
-	 */
 	//Mat image = imread("image/morphology.jpg", IMREAD_GRAYSCALE);
 	//CV_Assert(image.data);
 
